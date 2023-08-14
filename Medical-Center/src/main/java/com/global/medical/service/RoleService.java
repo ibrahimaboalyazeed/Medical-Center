@@ -34,4 +34,9 @@ public class RoleService {
 
 		return roleRepo.save(entity);
 	}
+
+	public List<Role> insertAll(List<Role> roles) {
+
+		return roleRepo.saveAll(roles);
+	}
 }

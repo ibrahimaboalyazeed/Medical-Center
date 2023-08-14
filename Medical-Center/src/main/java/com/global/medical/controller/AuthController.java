@@ -2,6 +2,8 @@ package com.global.medical.controller;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,6 +12,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +32,7 @@ import lombok.extern.log4j.Log4j2;
 @RestController
 @Log4j2
 @RequestMapping("/api/v1/auth")
+@Validated
 public class AuthController {
 
 
@@ -46,8 +50,13 @@ public class AuthController {
 
 		String email = (String) body.get("email");
 		String password = (String) body.get("password");
+		
 
 		log.info("Authentication");
+		  if (email == null || password == null) {
+		        throw new CustomException("Email or password is missing");
+		    }
+		
 		Authentication authentication = null;
 
 		try {
@@ -55,7 +64,7 @@ public class AuthController {
 			authentication = authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 		}
-
+ 
 		catch (DisabledException dis) {
 			throw new CustomException("USER_DISABLED");
 		} catch (BadCredentialsException e) {
@@ -79,7 +88,7 @@ public class AuthController {
 
 
 	@PostMapping("/signup")
-	public Object signup(@RequestBody AppUser user) {
+	public Object signup(@RequestBody @Valid AppUser user) {
 
 		AppUser userNew = userService.save(user);
 

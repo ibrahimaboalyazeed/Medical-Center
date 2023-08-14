@@ -4,10 +4,13 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,15 +19,20 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.validation.annotation.Validated;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +44,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Validated
 public class AppUser {
 
 
@@ -44,17 +53,19 @@ public class AppUser {
 	private Long id ;
 	
 	@Email
+	@NotBlank(message = "email must not be null")
 	@Column(unique = true)
 	private String email;
 	
-	@NotNull(message ="password is mandatory")
+	@NotNull(message ="password must not be null")
 	private String password ;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinTable(name = "user_roles" ,
 	    joinColumns = @JoinColumn(name = "user_id"),
 	    inverseJoinColumns = @JoinColumn(name = "role_id"))
 	@OrderColumn(name = "id")
+	@OnDelete(action = OnDeleteAction.CASCADE) 
 	private Set<Role> roles = new HashSet<>();
 	
 	@Value("1")
