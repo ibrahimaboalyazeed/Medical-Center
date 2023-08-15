@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import com.global.medical.error.CustomException;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -41,7 +43,7 @@ public class JwtTokenUtils {
 				.setSubject(username)
 				.setIssuedAt(new Date())
 				.setIssuer("app-Service")
-				.setExpiration(calcTokenExpirationDate(isRefresh))
+				//.setExpiration(calcTokenExpirationDate(isRefresh))
 				.claim("created", Calendar.getInstance().getTime())
 				.signWith(SignatureAlgorithm.HS512, TOKEN_SECRET).compact();
 	}
@@ -61,13 +63,13 @@ public class JwtTokenUtils {
 	}
 
 	public boolean isTokenValid(String token, AppUserDetail userDetails) {
-		log.info("isTokenExpired >>> " + isTokenExpired(token));
+		log.info("isTokenExpired >>> " );//+ isTokenExpired(token));
 		String username = getUserNameFromToken(token);
 		log.info("username from token >>> " + username);
 		log.info("userDetails.getUsername >>> " + userDetails.getUsername());
 		log.info("username =  >>> userDetails.getUsername >>> " + username.equals(userDetails.getUsername()));
 		Boolean isUserNameEqual = username.equalsIgnoreCase(userDetails.getUsername()) ;
-		return (isUserNameEqual && !isTokenExpired(token));
+		return (isUserNameEqual);// && !isTokenExpired(token));
 	}
 
 	public boolean isTokenExpired(String token) {

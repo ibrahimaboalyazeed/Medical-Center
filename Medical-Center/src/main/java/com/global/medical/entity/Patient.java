@@ -1,6 +1,7 @@
 package com.global.medical.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity()
 @Table(name = "patients")
 @Setter
 @Getter
@@ -35,7 +36,7 @@ public class Patient {
 	private int age;
 
 	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id",unique = true)
 	private AppUser appUser;
 
 	
