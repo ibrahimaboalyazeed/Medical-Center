@@ -1,7 +1,6 @@
 package com.global.medical.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
@@ -44,7 +43,7 @@ public class Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_specialty_id")
-    private MedicalSpecialty medicalSpecialty;
+    private Clinic clinic;
 	
     private LocalDate reservationDate; // Date without time
     private LocalTime reservationTime; // Time without date

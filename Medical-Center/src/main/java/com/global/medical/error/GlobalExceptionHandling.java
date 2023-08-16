@@ -1,5 +1,6 @@
 package com.global.medical.error;
 
+import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

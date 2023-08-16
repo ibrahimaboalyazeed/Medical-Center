@@ -36,8 +36,8 @@ public class Doctor {
 	private String phoneNumber;
 
 	 @ManyToOne(fetch = FetchType.LAZY)
-     @JoinColumn(name = "medical_specialty_id")
-	 private  MedicalSpecialty medicalSpecialty;
+     @JoinColumn(name = "clinic_id")
+	 private  Clinic clinic;
 
 	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "user_id")

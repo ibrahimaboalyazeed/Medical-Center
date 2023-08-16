@@ -67,6 +67,10 @@ public class UserService implements UserDetailsService {
 	    appUser.setRoles(roles);
 		return userRepo.save(appUser);
 	}
+	public List<AppUser> saveAll (List<AppUser> users){
+		
+		return userRepo.saveAll(users);
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

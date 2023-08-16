@@ -49,7 +49,7 @@ public class AppUserDetail implements UserDetails {
 		this.password= user.getPassword();
 		this.isEnabled = user.isEnabled();
 		
-		List<GrantedAuthority> authorities = new ArrayList<>();
+		 authorities = new ArrayList<>();
 		
 		 if(!user.getRoles().isEmpty()) {
 		        	user.getRoles().forEach(role -> {

@@ -39,4 +39,13 @@ public class RoleService {
 
 		return roleRepo.saveAll(roles);
 	}
+	
+	public Role getUserRole() {
+		
+		return roleRepo.findRoleByName("USER_ROLE");
+	}
+	public Role getAdminRole() {
+		
+		return roleRepo.findRoleByName("ADMIN_ROLE");
+	}
 }

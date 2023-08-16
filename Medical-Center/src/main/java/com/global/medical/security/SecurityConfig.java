@@ -3,6 +3,7 @@ package com.global.medical.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
@@ -22,6 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private AccessDeniedHandler accessDeniedHandler;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -46,10 +51,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	            .and()
 	            .authorizeRequests()
 	            .antMatchers(PUBLIC_END_POINTS).permitAll()
+	            .antMatchers(HttpMethod.GET, "/doctors/**").hasAnyRole("ADMIN")
+	            .antMatchers(HttpMethod.POST, "/doctors/**").hasRole("ADMIN")
+	            .antMatchers(HttpMethod.PUT, "/doctors/**").hasRole("ADMIN")
+	            .antMatchers(HttpMethod.DELETE, "/doctors/**").hasRole("ADMIN")
+	            .antMatchers(HttpMethod.GET, "/clinics/**").hasAnyRole("ADMIN")
+	            .antMatchers(HttpMethod.POST, "/clinics/**").hasRole("ADMIN")
+	            .antMatchers(HttpMethod.PUT, "/clinics/**").hasRole("ADMIN")
+	            .antMatchers(HttpMethod.DELETE, "/clinics/**").hasRole("ADMIN")
 	            .anyRequest().authenticated()
+	            .and()
+	            .exceptionHandling()
+	            .accessDeniedHandler(accessDeniedHandler)
 	            .and()
 	            .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
 	    }
+	   
+
 	   
 	   
 	   @Override
