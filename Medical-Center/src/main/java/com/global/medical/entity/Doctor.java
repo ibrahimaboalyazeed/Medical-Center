@@ -37,10 +37,12 @@ public class Doctor {
 
 	 @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn(name = "clinic_id")
+	 @NotNull(message = "clinic is mandatory")
 	 private  Clinic clinic;
 
 	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id",unique = true)
+	@NotNull(message = "app user is mandatory")
 	private AppUser appUser;
 
 }

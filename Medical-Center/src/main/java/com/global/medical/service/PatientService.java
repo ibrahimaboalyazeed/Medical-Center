@@ -74,6 +74,11 @@ public class PatientService {
         
 		return 1;
 	}
+	public Patient findByAppUserID(long id) {
+
+
+		return patientRepo.findByAppUserId(id);
+	}
     
 	
 

@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
 	
     public AppUser findById (Long id){
 		
-		return userRepo.findById(id).orElse(null);
+		return userRepo.findById(id).orElseThrow((() -> new CustomException("User is not found")));
 	}
     
     public AppUser save(AppUser entity) {
@@ -56,10 +56,10 @@ public class UserService implements UserDetailsService {
     	appUser.setEmail(entity.getEmail());
     	appUser.setPassword(passwordEncoder.encode(entity.getPassword()));
     	 // Get the customer role entity by name
-	    Role userRole = roleService.findByName("USER_ROLE");
+	    Role userRole = roleService.findByName("ROLE_USER");
 	    // Make sure the role exists
 	    if (userRole == null) {
-	        throw new RuntimeException("USER_ROLE not found in database!");
+	        throw new RuntimeException("ROLE_USER not found in database!");
 	    }
 	    // Add the role to the customer's set of roles
 	    Set<Role> roles = new HashSet<>();
@@ -83,6 +83,12 @@ public class UserService implements UserDetailsService {
 	  }
 		
 		return new AppUserDetail(appUser.get());
+	}
+
+
+	public Optional<AppUser> findUserById(Long id) {
+		
+		return userRepo.findById(id);
 	}
 
 

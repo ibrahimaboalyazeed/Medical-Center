@@ -13,8 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.global.medical.entity.AppUser;
 import com.global.medical.entity.Clinic;
+import com.global.medical.entity.Doctor;
+import com.global.medical.entity.Patient;
 import com.global.medical.entity.Role;
 import com.global.medical.service.ClinicService;
+import com.global.medical.service.DoctorService;
+import com.global.medical.service.PatientService;
 import com.global.medical.service.RoleService;
 import com.global.medical.service.UserService;
 
@@ -32,6 +36,10 @@ public class AppStartup implements CommandLineRunner{
 	private final UserService userService;
 	
 	private final ClinicService clinicService;
+	
+	private final PatientService patientService;
+	
+	private final DoctorService doctorService;
 
 
 	@Override
@@ -41,18 +49,18 @@ public class AppStartup implements CommandLineRunner{
 		
 		if (roleService.findAll().isEmpty()) {
 		Role role = new Role();
-		role.setName("ADMIN_ROLE");
+		role.setName("ROLE_ADMIN");
 
 		Role role1 = new Role();
-		role1.setName("USER_ROLE");
+		role1.setName("ROLE_USER");
 
 		roleService.insertAll(Arrays.asList(role, role1));
 
 	}
 		 if (userService.findAll().isEmpty()) {
 	            // Create demo roles
-	            Role adminRole = roleService.findByName("ADMIN_ROLE");
-	            Role userRole = roleService.findByName("USER_ROLE");
+	            Role adminRole = roleService.findByName("ROLE_ADMIN");
+	            Role userRole = roleService.findByName("ROLE_USER");
 
 	            // Create demo AppUsers with roles
 	            AppUser appUser = new AppUser();
@@ -125,9 +133,21 @@ public class AppStartup implements CommandLineRunner{
 	            appUser9.addRole(adminRole);
 	            appUser9.addRole(userRole);
 	            
+	            AppUser appUser10 = new AppUser();
+	            appUser10.setEmail("medo@gmail.com");
+	            appUser10.setPassword(passwordEncoder.encode("medo"));
+	            appUser10.setEnabled(true);
+	            appUser10.addRole(userRole);
+	            
+	            AppUser appUser11 = new AppUser();
+	            appUser11.setEmail("hema@gmail.com");
+	            appUser11.setPassword(passwordEncoder.encode("hema"));
+	            appUser11.setEnabled(true);
+	            appUser11.addRole(userRole);
+	            
 	            // Save the AppUsers
 	            userService.saveAll(Arrays.asList(appUser,appUser1,appUser2,appUser3,appUser4,
-	            		appUser5,appUser6,appUser7,appUser8,appUser9));
+	            		appUser5,appUser6,appUser7,appUser8,appUser9,appUser10,appUser11));
 	        }
 
 		
@@ -215,6 +235,30 @@ public class AppStartup implements CommandLineRunner{
 
 	        clinicService.insertAll(clinics);
 	    }
+		
+		if (doctorService.findAll().isEmpty()) {
+
+			Doctor doctor = new Doctor();
+
+			doctor.setFullName("Medo");
+			doctor.setClinic(clinicService.findById(1L));
+			doctor.setAppUser(userService.findById(11L));
+			doctor.setPhoneNumber("0101111111111");
+			doctorService.insert(doctor);
+
+		}
+		
+		if (patientService.findAll().isEmpty()) {
+
+			Patient patient = new Patient();
+
+			patient.setFullName("Medo");
+			patient.setAge(25);
+			patient.setAppUser(userService.findById(12L));
+			patient.setPhoneNumber("0101111111111");
+			patientService.insert(patient);
+
+		}
 		
 
 		 

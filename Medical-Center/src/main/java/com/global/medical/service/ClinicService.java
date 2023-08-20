@@ -19,6 +19,12 @@ public class ClinicService {
 
 	@Autowired
 	private ClinicRepo clinicRepo;
+	@Autowired
+	private DoctorService doctorService;
+	@Autowired
+	private PatientService patientService;
+	@Autowired
+	private UserService userService;
 
 
 	public Clinic findById(long id) {
@@ -65,7 +71,29 @@ public class ClinicService {
 		if (!clinicToInsert.isEmpty()) {
 			throw  new CustomException("this clinic is already exists");
 		}
+		if(userService.findUserById(clinic.getAppUser().getId()).isEmpty())
+		{
+			throw  new CustomException("User is not found");
+		}
+
+		if(findClinicUserId(clinic.getAppUser().getId())!=null)
+		{
+			throw new CustomException("This user is already exists");
+		}
+
+		Clinic clinicToAdd= new Clinic();
+		clinicToAdd.setName(clinic.getName());
+		clinicToAdd.setDescription(clinic.getDescription());
+		clinicToAdd.setExaminationPeriod(clinic.getExaminationPeriod());
+		clinicToAdd.setExaminationPrice(clinic.getExaminationPrice());
+		clinicToAdd.setAppUser(clinic.getAppUser());
+		
 		return clinicRepo.save(clinic);
+	}
+
+	private Object findClinicUserId(Long id) {
+	
+		return clinicRepo.findClinicUserId(id);
 	}
 
 	public Clinic findByName(String name) {
@@ -91,5 +119,13 @@ public class ClinicService {
 			
 			return (int) clinicRepo.count();
 		}
+
+
+
+	public Clinic findByUserID(Long id) {
+		
+		return clinicRepo.findByAppUserId(id);
+	}
+
 
 }

@@ -1,6 +1,9 @@
 package com.global.medical.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,7 @@ import lombok.NoArgsConstructor;
 @RestController
 @RequestMapping("/doctors")
 @AllArgsConstructor
+@Validated
 public class DoctorController {
 
     private final DoctorService doctorService;
@@ -39,7 +43,7 @@ public class DoctorController {
 
     @Operation(summary = "Add new doctor")
     @PostMapping("/create")
-    public ResponseEntity<?> createDoctor(@RequestBody Doctor doctor) {
+    public ResponseEntity<?> createDoctor(@RequestBody @Valid Doctor doctor) {
         return ResponseEntity.ok(new CustomResponse(doctorService.insert(doctor)));
     }
 
@@ -48,12 +52,13 @@ public class DoctorController {
     public ResponseEntity<?> updateFullName(@RequestParam long id, @RequestParam String fullName) {
         return ResponseEntity.ok(new CustomResponse(doctorService.updateFullName(id, fullName)));
     }
+	@Operation(summary = "update the doctor phone number")
+	@PutMapping("/phonenumber/update")
+	public ResponseEntity<?> updatePhoneNumber(@RequestParam long id , @RequestParam String phoneNumber) {
+		
+		return ResponseEntity.ok(new CustomResponse(doctorService.updatePhoneNumber(id,phoneNumber)));
+	}
 
-    @Operation(summary = "Update the doctor's medical-specialty")
-    @PutMapping("/medical-specialty/update")
-    public ResponseEntity<?> updatePhoneNumber(@RequestParam long id, @RequestParam String phoneNumber) {
-        return ResponseEntity.ok(new CustomResponse(doctorService.updatePhoneNumber(id, phoneNumber)));
-    }
 
     @Operation(summary = "Delete a doctor by their id")
     @DeleteMapping("/{id}")

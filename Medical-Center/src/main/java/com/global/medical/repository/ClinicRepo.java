@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.global.medical.entity.Clinic;
@@ -15,5 +16,13 @@ public interface ClinicRepo extends JpaRepository<Clinic, Long>{
 
 	List<Clinic> findByNameContaining(String name);
 	
+	 Clinic findByAppUserId(long id);
+	 
+    @Query(value = "SELECT  `user_id` FROM `clinics` WHERE user_id = :id", nativeQuery = true)
+	Object findClinicUserId(Long id);
+
+	//long findAppUserId(Long id);
+
+
 
 }

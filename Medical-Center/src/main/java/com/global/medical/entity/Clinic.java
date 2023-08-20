@@ -36,7 +36,7 @@ public class Clinic {
 	private Double examinationPrice;
 	
 	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id",unique = true, nullable = false)
 	private AppUser appUser;
 
 }
