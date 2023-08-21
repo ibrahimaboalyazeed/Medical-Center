@@ -36,6 +36,7 @@ public class DoctorService {
         Doctor doctorToInsert = new Doctor();
         doctorToInsert.setFullName(doctor.getFullName());
         doctorToInsert.setPhoneNumber(doctor.getPhoneNumber());
+        doctorToInsert.setShift(doctor.getShift());
         doctorToInsert.setClinic(doctor.getClinic());
         
     	if(userService.findUserById(doctor.getAppUser().getId()).isEmpty())

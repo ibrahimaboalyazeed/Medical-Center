@@ -2,6 +2,8 @@ package com.global.medical.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.global.medical.enums.Shift;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +38,9 @@ public class Doctor {
 	private String fullName;
 
 	private String phoneNumber;
+	
+	@Enumerated(EnumType.STRING)
+	private Shift shift;
 
 	 @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn(name = "clinic_id")

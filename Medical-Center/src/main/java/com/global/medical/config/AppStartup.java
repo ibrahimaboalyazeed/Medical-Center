@@ -16,6 +16,7 @@ import com.global.medical.entity.Clinic;
 import com.global.medical.entity.Doctor;
 import com.global.medical.entity.Patient;
 import com.global.medical.entity.Role;
+import com.global.medical.enums.Shift;
 import com.global.medical.service.ClinicService;
 import com.global.medical.service.DoctorService;
 import com.global.medical.service.PatientService;
@@ -244,6 +245,7 @@ public class AppStartup implements CommandLineRunner{
 			doctor.setClinic(clinicService.findById(1L));
 			doctor.setAppUser(userService.findById(11L));
 			doctor.setPhoneNumber("0101111111111");
+			doctor.setShift(Shift.MORNING);
 			doctorService.insert(doctor);
 
 		}

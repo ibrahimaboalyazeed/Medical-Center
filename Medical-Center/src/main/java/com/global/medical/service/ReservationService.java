@@ -1,5 +1,7 @@
 package com.global.medical.service;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -31,6 +33,10 @@ public class ReservationService {
 
 	public Reservation insert(Reservation reservation) {
 		
+		if(findReservation(reservation) != null)	
+		{
+			throw new CustomException("sorry ,  the requested time and date for your reservation have already been reserved.");
+		}
 		
 		Reservation reservation2 = new Reservation();
 		
@@ -49,15 +55,22 @@ public class ReservationService {
 		
 		reservation2.setReservationTime(reservation.getReservationTime());
 		
-		reservation2.setReservationDay(reservation.getReservationDay());
-		
 		reservation2.setReservationDay(reservation.getReservationDate().getDayOfWeek());
 		
 		reservation2.setStatus(reservation.getStatus());
 		
+		reservation2.setShift(reservation.getShift());
+		
 		
 		
 		return reservationRepo.save(reservation2);
+	}
+	
+	public Reservation findReservation (Reservation reservation)
+	{
+		return reservationRepo.findByReservationDateAndReservationTimeAndShiftAndClinicIdAndDoctorIdAndPatientId(reservation.getReservationDate(),
+				reservation.getReservationTime(),reservation.getShift(),reservation.getClinic().getId(),
+				reservation.getDoctor().getId(),reservation.getPatient().getId());
 	}
 
 }

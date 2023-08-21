@@ -22,7 +22,9 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Formula;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 
+import com.global.medical.enums.Shift;
 import com.global.medical.enums.Status;
+import com.global.medical.error.CustomException;
 import com.global.medical.error.InvalidStatusInputException;
 
 import lombok.AllArgsConstructor;
@@ -60,13 +62,18 @@ public class Reservation {
   
     private LocalTime reservationTime;
 
-    //private ReservationDay reservationDay; // Store the day as an enum value
     
-    @Enumerated(EnumType.STRING) // Store the DayOfWeek enum as a string in the database
-    private DayOfWeek reservationDay;
+    @Enumerated(EnumType.STRING)          // Store the DayOfWeek enum as a string in the database
+    private DayOfWeek reservationDay;     // Store the day as an enum value
     
     @Enumerated(EnumType.STRING)
     private Status status;
+    
+    
+    @Enumerated(EnumType.STRING)
+    private Shift shift;
+    
+    
     
     
     
@@ -99,6 +106,23 @@ public class Reservation {
             }
         }
         return false;
+    }
+    public void setShift(Shift shift) {
+        // Custom validation for shift
+        if (shift == null) {
+            throw new IllegalArgumentException("Shift cannot be null");
+        }
+
+        LocalTime currentTime = LocalTime.now();
+        LocalTime shiftStartTime = LocalTime.parse(shift.getStartTime());
+        LocalTime shiftEndTime = LocalTime.parse(shift.getEndTime());
+
+        if (reservationTime.isBefore(shiftStartTime) || reservationTime.isAfter(shiftEndTime)) {
+   
+            throw new CustomException("Cannot set reservation for this shift at the current time.");
+        }
+
+        this.shift = shift;
     }
     
 
