@@ -1,10 +1,13 @@
 package com.global.medical.service;
 
 import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 import org.springframework.stereotype.Service;
 
 import com.global.medical.entity.Reservation;
+import com.global.medical.error.CustomException;
 import com.global.medical.repository.ReservationRepo;
 
 import lombok.AllArgsConstructor;
@@ -37,11 +40,18 @@ public class ReservationService {
 		
 		reservation2.setPatient(patientService.findById(reservation.getPatient().getId()));
 		
+		if(reservation.getReservationDate().isBefore(LocalDate.now()))
+		{
+			throw new CustomException("Reservation date cannot be in the past.");
+		}
+		
 		reservation2.setReservationDate(reservation.getReservationDate());
 		
 		reservation2.setReservationTime(reservation.getReservationTime());
 		
 		reservation2.setReservationDay(reservation.getReservationDay());
+		
+		reservation2.setReservationDay(reservation.getReservationDate().getDayOfWeek());
 		
 		reservation2.setStatus(reservation.getStatus());
 		

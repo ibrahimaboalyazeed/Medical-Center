@@ -60,10 +60,9 @@ public class Reservation {
   
     private LocalTime reservationTime;
 
-    //@Enumerated(EnumType.STRING) // Store the DayOfWeek enum as a string in the database
     //private ReservationDay reservationDay; // Store the day as an enum value
     
-    @Transient
+    @Enumerated(EnumType.STRING) // Store the DayOfWeek enum as a string in the database
     private DayOfWeek reservationDay;
     
     @Enumerated(EnumType.STRING)
@@ -80,11 +79,7 @@ public class Reservation {
         }
         this.reservationTime = reservationTime;
     }
-    @PostLoad
-    public void calcReservationDay()
-    {
-    	  String dayOfWeek = reservationDate.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.US);
-    }
+
     
     public void setStatus(Status status) {
     	
