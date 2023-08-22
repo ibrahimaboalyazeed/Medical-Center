@@ -3,7 +3,9 @@ package com.global.medical.service;
 import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.TextStyle;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -52,17 +54,9 @@ public class ReservationService {
 		reservation2.setDoctor(doctorService.findById(reservation.getDoctor().getId()));
 		
 		reservation2.setPatient(patientService.findById(reservation.getPatient().getId()));
+	
 		
-		System.out.println(reservation.getReservationDate().isBefore(LocalDate.now()));
-		
-		System.out.println(reservation.getReservationDate().isEqual(LocalDate.now()));
-
-		
-		System.out.println(reservation.getReservationTime().isBefore(LocalTime.now()));
-
-		
-		
-		if(reservation.getReservationDate().isBefore(LocalDate.now()) || (reservation.getReservationDate().isEqual(LocalDate.now()) && reservation.getReservationTime().isBefore(LocalTime.now())))
+		if(reservation.getReservationDate().isBefore(LocalDate.now()) || (reservation.getReservationDate().isEqual(LocalDate.now()) && reservation.getReservationTime().isBefore(LocalTime.now().plusHours(1))))
 		{
 			throw new CustomException("Reservation date cannot be in the past.");
 		}
