@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.global.medical.entity.Clinic;
 import com.global.medical.entity.Reservation;
 import com.global.medical.enums.Shift;
 
@@ -37,6 +38,13 @@ public interface ReservationRepo extends JpaRepository<Reservation, Long>{
 
 	    Reservation findByReservationDateAndReservationTimeAndShiftAndClinicIdAndDoctorIdAndPatientId(
 	        LocalDate reservationDate, LocalTime reservationTime, Shift shift, Long clinicId, Long doctorId, Long patientId);
+	    
+	   // List<LocalTime> findReservationTimeByClinicAndReservationDate(Clinic clinic, LocalDate reservationDate);
+	    
+	    
+	     //Define your custom query method here
+	    @Query("SELECT r.reservationTime FROM Reservation r WHERE r.clinic = :clinic AND r.reservationDate = :reservationDate")
+	    List<LocalTime> findReservationTimeByClinicAndReservationDate(@Param("clinic") Clinic clinic, @Param("reservationDate") LocalDate reservationDate );
 	
 
 

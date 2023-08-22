@@ -127,5 +127,9 @@ public class ClinicService {
 		return clinicRepo.findByAppUserId(id);
 	}
 
+	public int findExaminationPriceById(Clinic clinic) {
+		return clinicRepo.findExaminationPriceById(clinic.getId()).getExaminationPrice();
+	}
+
 
 }

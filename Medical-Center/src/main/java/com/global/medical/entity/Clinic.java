@@ -33,7 +33,7 @@ public class Clinic {
 	
 	private String examinationPeriod;
 	
-	private Double examinationPrice;
+	private Integer examinationPrice;
 	
 	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "user_id",unique = true, nullable = false)

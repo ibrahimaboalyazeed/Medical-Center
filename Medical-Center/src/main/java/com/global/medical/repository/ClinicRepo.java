@@ -23,6 +23,6 @@ public interface ClinicRepo extends JpaRepository<Clinic, Long>{
 
 	//long findAppUserId(Long id);
 
-
+    Clinic findExaminationPriceById(Long id);
 
 }

@@ -135,20 +135,34 @@ public class AppStartup implements CommandLineRunner{
 	            appUser9.addRole(userRole);
 	            
 	            AppUser appUser10 = new AppUser();
-	            appUser10.setEmail("medo@gmail.com");
-	            appUser10.setPassword(passwordEncoder.encode("medo"));
+	            appUser10.setEmail("mohamed@gmail.com");
+	            appUser10.setPassword(passwordEncoder.encode("mohamed"));
 	            appUser10.setEnabled(true);
-	            appUser10.addRole(userRole);
+	            appUser10.addRole(userRole);      
 	            
 	            AppUser appUser11 = new AppUser();
-	            appUser11.setEmail("hema@gmail.com");
-	            appUser11.setPassword(passwordEncoder.encode("hema"));
+	            appUser11.setEmail("ahmed@gmail.com");
+	            appUser11.setPassword(passwordEncoder.encode("ahemd"));
 	            appUser11.setEnabled(true);
 	            appUser11.addRole(userRole);
 	            
+	            AppUser appUser12 = new AppUser();
+	            appUser12.setEmail("hema@gmail.com");
+	            appUser12.setPassword(passwordEncoder.encode("hema"));
+	            appUser12.setEnabled(true);
+	            appUser12.addRole(userRole);
+	            
+	            AppUser appUser13 = new AppUser();
+	            appUser13.setEmail("amora@gmail.com");
+	            appUser13.setPassword(passwordEncoder.encode("amora"));
+	            appUser13.setEnabled(true);
+	            appUser13.addRole(userRole);
+	            
+	    
+	            
 	            // Save the AppUsers
 	            userService.saveAll(Arrays.asList(appUser,appUser1,appUser2,appUser3,appUser4,
-	            		appUser5,appUser6,appUser7,appUser8,appUser9,appUser10,appUser11));
+	            		appUser5,appUser6,appUser7,appUser8,appUser9,appUser10,appUser11,appUser12,appUser13));
 	        }
 
 		
@@ -159,7 +173,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic1.setName("Cardiology");
 	        clinic1.setDescription("Deals with heart-related issues.");
 	        clinic1.setExaminationPeriod("30");
-	        clinic1.setExaminationPrice(150.0);
+	        clinic1.setExaminationPrice(150);
             clinic1.setAppUser(userService.findById(1L));
 	        clinics.add(clinic1);
 
@@ -167,7 +181,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic2.setName("Dermatology");
 	        clinic2.setDescription("Focuses on skin conditions.");
 	        clinic2.setExaminationPeriod("15");
-	        clinic2.setExaminationPrice(120.0);
+	        clinic2.setExaminationPrice(120);
             clinic2.setAppUser(userService.findById(2L));
 	        clinics.add(clinic2);
 
@@ -175,7 +189,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic3.setName("Orthopedics");
 	        clinic3.setDescription("Deals with bone and joint problems.");
 	        clinic3.setExaminationPeriod("15");
-	        clinic3.setExaminationPrice(180.0);
+	        clinic3.setExaminationPrice(180);
             clinic3.setAppUser(userService.findById(3L));
 	        clinics.add(clinic3);
 
@@ -183,7 +197,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic4.setName("Gastroenterology");
 	        clinic4.setDescription("Focuses on digestive system disorders.");
 	        clinic4.setExaminationPeriod("30");
-	        clinic4.setExaminationPrice(200.0);	   
+	        clinic4.setExaminationPrice(200);	   
             clinic4.setAppUser(userService.findById(4L));
 	        clinics.add(clinic4);
 
@@ -191,7 +205,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic5.setName("Neurology");
 	        clinic5.setDescription("Deals with nervous system disorders.");
 	        clinic5.setExaminationPeriod("15");
-	        clinic5.setExaminationPrice(180.0);
+	        clinic5.setExaminationPrice(180);
             clinic5.setAppUser(userService.findById(5L));
 	        clinics.add(clinic5);
 
@@ -199,7 +213,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic6.setName("Ophthalmology");
 	        clinic6.setDescription("Focuses on eye and vision issues.");
 	        clinic6.setExaminationPeriod("15");
-	        clinic6.setExaminationPrice(100.0);
+	        clinic6.setExaminationPrice(100);
             clinic6.setAppUser(userService.findById(6L));
 	        clinics.add(clinic6);
 
@@ -207,7 +221,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic7.setName("Pediatrics");
 	        clinic7.setDescription("Deals with child healthcare.");
 	        clinic7.setExaminationPeriod("30");
-	        clinic7.setExaminationPrice(130.0);
+	        clinic7.setExaminationPrice(130);
             clinic7.setAppUser(userService.findById(7L));
 	        clinics.add(clinic7);
 
@@ -215,7 +229,7 @@ public class AppStartup implements CommandLineRunner{
 	        clinic8.setName("Psychiatry");
 	        clinic8.setDescription("Focuses on mental health.");
 	        clinic8.setExaminationPeriod("30");
-	        clinic8.setExaminationPrice(170.0);
+	        clinic8.setExaminationPrice(170);
             clinic8.setAppUser(userService.findById(8L));
 	        clinics.add(clinic8);
 
@@ -223,15 +237,16 @@ public class AppStartup implements CommandLineRunner{
 	        clinic9.setName("Radiology");
 	        clinic9.setDescription("Deals with medical imaging.");
 	        clinic9.setExaminationPeriod("30");
-	        clinic9.setExaminationPrice(190.0);
+	        clinic9.setExaminationPrice(190);
             clinic9.setAppUser(userService.findById(9L));
 	        clinics.add(clinic9);
 
-        Clinic clinic10 = new Clinic();
-	        clinic10.setName("Urology");	        clinic10.setDescription("Focuses on urinary system disorders.");
-      clinic10.setExaminationPeriod("30");
-	        clinic10.setExaminationPrice(160.0);
-           clinic10.setAppUser(userService.findById(10L));
+            Clinic clinic10 = new Clinic();
+	        clinic10.setName("Urology");	      
+	        clinic10.setDescription("Focuses on urinary system disorders.");
+            clinic10.setExaminationPeriod("30");
+	        clinic10.setExaminationPrice(160);
+            clinic10.setAppUser(userService.findById(10L));
 	        clinics.add(clinic10);
 
 	        clinicService.insertAll(clinics);
@@ -241,12 +256,21 @@ public class AppStartup implements CommandLineRunner{
 
 			Doctor doctor = new Doctor();
 
-			doctor.setFullName("Medo");
+			doctor.setFullName("Mohamed");
 			doctor.setClinic(clinicService.findById(1L));
 			doctor.setAppUser(userService.findById(11L));
-			doctor.setPhoneNumber("0101111111111");
+			doctor.setPhoneNumber("01098157536");
 			doctor.setShift(Shift.MORNING);
 			doctorService.insert(doctor);
+			
+			Doctor doctor1 = new Doctor();
+
+			doctor1.setFullName("Ahemd");
+			doctor1.setClinic(clinicService.findById(2L));
+			doctor1.setAppUser(userService.findById(12L));
+			doctor1.setPhoneNumber("01173497810");
+			doctor1.setShift(Shift.EVENING);
+			doctorService.insert(doctor1);
 
 		}
 		
@@ -254,11 +278,20 @@ public class AppStartup implements CommandLineRunner{
 
 			Patient patient = new Patient();
 
-			patient.setFullName("Medo");
+			patient.setFullName("Saeed");
 			patient.setAge(25);
-			patient.setAppUser(userService.findById(12L));
-			patient.setPhoneNumber("0101111111111");
+			patient.setAppUser(userService.findById(13L));
+			patient.setPhoneNumber("01025367849");
 			patientService.insert(patient);
+			
+			
+			Patient patient1 = new Patient();
+
+			patient1.setFullName("Fathi");
+			patient1.setAge(35);
+			patient1.setAppUser(userService.findById(14L));
+			patient1.setPhoneNumber("01224583112");
+			patientService.insert(patient1);
 
 		}
 		
