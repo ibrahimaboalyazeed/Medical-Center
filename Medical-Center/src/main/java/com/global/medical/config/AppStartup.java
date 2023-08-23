@@ -158,11 +158,26 @@ public class AppStartup implements CommandLineRunner{
 	            appUser13.setEnabled(true);
 	            appUser13.addRole(userRole);
 	            
+	            AppUser appUser14 = new AppUser();
+	            appUser14.setEmail("mahmoud@gmail.com");
+	            appUser14.setPassword(passwordEncoder.encode("mahmoud"));
+	            appUser14.setEnabled(true);
+	            appUser14.addRole(userRole);
+	            
+	            AppUser appUser15 = new AppUser();
+	            appUser15.setEmail("zezo@gmail.com");
+	            appUser15.setPassword(passwordEncoder.encode("zezo"));
+	            appUser15.setEnabled(true);
+	            appUser15.addRole(userRole);
+	            
+	            
+	            
+	            
 	    
 	            
 	            // Save the AppUsers
 	            userService.saveAll(Arrays.asList(appUser,appUser1,appUser2,appUser3,appUser4,
-	            		appUser5,appUser6,appUser7,appUser8,appUser9,appUser10,appUser11,appUser12,appUser13));
+	            		appUser5,appUser6,appUser7,appUser8,appUser9,appUser10,appUser11,appUser12,appUser13,appUser14,appUser15));
 	        }
 
 		
@@ -271,6 +286,16 @@ public class AppStartup implements CommandLineRunner{
 			doctor1.setPhoneNumber("01173497810");
 			doctor1.setShift(Shift.EVENING);
 			doctorService.insert(doctor1);
+			
+			Doctor doctor2 = new Doctor();
+
+			doctor2.setFullName("Mahmoud");
+			doctor2.setClinic(clinicService.findById(3L));
+			doctor2.setAppUser(userService.findById(15L));
+			doctor2.setPhoneNumber("01475397415");
+			doctor2.setShift(Shift.MORNING);
+			doctorService.insert(doctor2);
+
 
 		}
 		
@@ -292,6 +317,15 @@ public class AppStartup implements CommandLineRunner{
 			patient1.setAppUser(userService.findById(14L));
 			patient1.setPhoneNumber("01224583112");
 			patientService.insert(patient1);
+			
+			Patient patient2 = new Patient();
+
+			patient2.setFullName("Karem");
+			patient2.setAge(35);
+			patient2.setAppUser(userService.findById(16L));
+			patient2.setPhoneNumber("01596347569");
+			patientService.insert(patient2);
+
 
 		}
 		

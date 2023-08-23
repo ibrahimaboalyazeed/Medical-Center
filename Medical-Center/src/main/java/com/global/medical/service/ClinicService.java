@@ -29,7 +29,7 @@ public class ClinicService {
 
 	public Clinic findById(long id) {
 
-		Clinic clinic = clinicRepo.findById(id).orElseThrow(() -> new CustomException("this clinic is not found"));
+		Clinic clinic = clinicRepo.findById(id).orElseThrow(() -> new CustomException("Clinic with ID " + id + " not found."));
 
 		return clinic;
 	}
@@ -54,7 +54,7 @@ public class ClinicService {
 	public Clinic updateClinic(Clinic clinic) {
 
 		Clinic clinicToUpdate = clinicRepo.findById(clinic.getId())
-				.orElseThrow(() -> new CustomException("this clinic is not found"));
+				.orElseThrow(() -> new CustomException("Clinic with ID " + clinic.getId() + " not found."));
 		clinicToUpdate.setName(clinic.getName());
 		clinicToUpdate.setExaminationPrice(clinic.getExaminationPrice());
 		clinicToUpdate.setExaminationPeriod(clinic.getExaminationPeriod());
@@ -69,7 +69,7 @@ public class ClinicService {
 		Optional<Clinic> clinicToInsert = clinicRepo.findByName(clinic.getName());
 		
 		if (!clinicToInsert.isEmpty()) {
-			throw  new CustomException("this clinic is already exists");
+			throw  new CustomException(clinic.getName() + " Clinic is already exists");
 		}
 		if(userService.findUserById(clinic.getAppUser().getId()).isEmpty())
 		{
@@ -98,14 +98,14 @@ public class ClinicService {
 
 	public Clinic findByName(String name) {
 
-		Clinic clinic = clinicRepo.findByName(name).orElseThrow(() -> new CustomException("this Clinic is not found"));
+		Clinic clinic = clinicRepo.findByName(name).orElseThrow(() -> new CustomException(name + " Clinic is already exists"));
 
 		return clinic;
 	}
 	
 	public int deleteClinic(long id) {
 
-		Clinic clinicToDelete = clinicRepo.findById(id).orElseThrow(() -> new CustomException("this Clinic is not found"));
+		Clinic clinicToDelete = clinicRepo.findById(id).orElseThrow(() -> new CustomException("Clinic with ID " + id + " not found"));
 		 clinicRepo.deleteById(clinicToDelete.getId());
 		 return 1;
 	}

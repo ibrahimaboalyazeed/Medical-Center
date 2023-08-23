@@ -107,22 +107,38 @@ public class Reservation {
         }
         return false;
     }
-    public void setShift(Shift shift) {
-        // Custom validation for shift
-        if (shift == null) {
-            throw new IllegalArgumentException("Shift cannot be null");
+//    public void setShift(Shift shift) {
+//        // Custom validation for shift
+//        if (shift == null) {
+//            throw new IllegalArgumentException("Shift cannot be null");
+//        }
+//
+//        LocalTime currentTime = LocalTime.now();
+//        LocalTime shiftStartTime = LocalTime.parse(shift.getStartTime());
+//        LocalTime shiftEndTime = LocalTime.parse(shift.getEndTime());
+//
+//        if (reservationTime.isBefore(shiftStartTime) || reservationTime.isAfter(shiftEndTime)) {
+//   
+//            throw new CustomException("Cannot set reservation for this shift at the current time.");
+//        }
+//
+//        this.shift = shift;
+//    }
+    public void setShift() {
+        if (reservationTime != null) {
+            LocalTime morningStartTime = LocalTime.parse("09:00:00");
+            LocalTime morningEndTime = LocalTime.parse("15:00:00");
+            LocalTime eveningStartTime = LocalTime.parse("15:00:00");
+            LocalTime eveningEndTime = LocalTime.parse("21:00:00");
+
+            if (reservationTime.isAfter(morningStartTime) && reservationTime.isBefore(morningEndTime)) {
+                this.shift = Shift.MORNING;
+            } else if (reservationTime.isAfter(eveningStartTime) && reservationTime.isBefore(eveningEndTime)) {
+                this.shift = Shift.EVENING;
+            } else {
+            	 throw new CustomException("Cannot set reservation for this shift at the current time.");
+                 }
         }
-
-        LocalTime currentTime = LocalTime.now();
-        LocalTime shiftStartTime = LocalTime.parse(shift.getStartTime());
-        LocalTime shiftEndTime = LocalTime.parse(shift.getEndTime());
-
-        if (reservationTime.isBefore(shiftStartTime) || reservationTime.isAfter(shiftEndTime)) {
-   
-            throw new CustomException("Cannot set reservation for this shift at the current time.");
-        }
-
-        this.shift = shift;
     }
     
 

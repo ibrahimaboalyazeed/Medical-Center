@@ -1,6 +1,7 @@
 package com.global.medical.controller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.global.medical.dto.ReservationRequest;
+import com.global.medical.dto.ReservationReport;
 import com.global.medical.entity.Clinic;
+import com.global.medical.entity.Doctor;
 import com.global.medical.entity.Reservation;
 import com.global.medical.error.CustomResponse;
 import com.global.medical.service.ReservationService;
@@ -39,15 +41,24 @@ public class ReservationController {
         return ResponseEntity.ok(new CustomResponse(reservationService.insert(reservation)));
     }
 	
-	@Operation(summary = "reservations for a specific clinic in a specific date ")
-    @PostMapping("/reserved")
-    public ResponseEntity<?> chooseReservationClinics(@RequestBody ReservationRequest request )  {
-		
+	@Operation(summary = "retrieve reservation report for a specific doctor  in a specific date ")
+    @PostMapping("/report")
+    public ResponseEntity<?> generateReservationReport(@RequestBody ReservationReport request )  {
+
 		    LocalDate date = request.getDate();
-		    List<Clinic> clinics = request.getClinics();
-        return ResponseEntity.ok(new CustomResponse(reservationService.chooseClinics(clinics,date)));
+	        Map<Long, Long> map=request.getClinics();
+        return ResponseEntity.ok(new CustomResponse(reservationService.generateReservationReport(map,date)));
     }
 	
+	
+//	@Operation(summary = "retrieve reservations for a specific clinic in a specific date ")
+//    @PostMapping("/reserved")
+//    public ResponseEntity<?> generatePatientReservation(@RequestBody Map<Long, LocalTime> map )  {
+//		
+//		    LocalDate date = request.getDate();
+//		    List<Clinic> clinics = request.getClinics();
+//        return ResponseEntity.ok(new CustomResponse(reservationService.generateReservationReport(clinics,date)));
+//    }
 	
 
 }

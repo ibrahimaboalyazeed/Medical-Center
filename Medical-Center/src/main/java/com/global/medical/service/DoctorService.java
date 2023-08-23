@@ -24,7 +24,7 @@ public class DoctorService {
 
     public Doctor findById(long id) {
         return doctorRepository.findById(id)
-            .orElseThrow(() -> new CustomException("This Doctor is not found"));
+            .orElseThrow(() -> new CustomException("Doctor with ID " + id + " not found."));
     }
 
     public List<Doctor> findAll() {

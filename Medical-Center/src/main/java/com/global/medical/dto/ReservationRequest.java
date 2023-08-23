@@ -1,18 +1,24 @@
 package com.global.medical.dto;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalTime;
+import java.util.Map;
 
 import com.global.medical.entity.Clinic;
+import com.global.medical.entity.Doctor;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Setter
-@Getter
 public class ReservationRequest {
 	
-	private List<Clinic> clinics;
-    private LocalDate date;
+	private Map<Long, LocalTime> datesMap;
+	
+	private Map<Long, Long> doctorClinic;
+	
+	private LocalDate date;
+	
+	private Long patientId;
+	
+	  
+	
+	
 
 }
