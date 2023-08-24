@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -51,11 +52,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	            .and()
 	            .authorizeRequests()
 	            .antMatchers(PUBLIC_END_POINTS).permitAll()
-	            .antMatchers(HttpMethod.GET, "/doctors/**").hasAnyRole("ADMIN")
+	            .antMatchers("/swagger-ui.html","/swagger-ui/**").permitAll() // Allow unauthenticated access to Swagger UI
+	            .antMatchers(HttpMethod.GET, "/patients/all").hasAnyRole("ADMIN")
 	            .antMatchers(HttpMethod.POST, "/doctors/**").hasRole("ADMIN")
 	            .antMatchers(HttpMethod.PUT, "/doctors/**").hasRole("ADMIN")
 	            .antMatchers(HttpMethod.DELETE, "/doctors/**").hasRole("ADMIN")
-	            .antMatchers(HttpMethod.GET, "/clinics/**").hasAnyRole("ADMIN")
 	            .antMatchers(HttpMethod.POST, "/clinics/**").hasRole("ADMIN")
 	            .antMatchers(HttpMethod.PUT, "/clinics/**").hasRole("ADMIN")
 	            .antMatchers(HttpMethod.DELETE, "/clinics/**").hasRole("ADMIN")
@@ -67,7 +68,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	            .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
 	    }
 	   
-
+	   @Override
+		public void configure(WebSecurity web) throws Exception {
+			web.ignoring().antMatchers("/swagger-ui/**", "/v3/api-docs/**");
+		}
 	   
 	   
 	   @Override

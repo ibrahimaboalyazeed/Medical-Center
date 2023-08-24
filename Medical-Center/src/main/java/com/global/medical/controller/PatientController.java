@@ -1,7 +1,6 @@
 package com.global.medical.controller;
 
-import javax.validation.Valid;
-
+import org.springframework.context.annotation.Role;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,11 +19,10 @@ import com.global.medical.service.PatientService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 @RequiredArgsConstructor
 @RestController
-@Log4j2
+//@Log4j2
 @RequestMapping("/patients")
 @Validated
 public class PatientController {

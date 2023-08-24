@@ -4,19 +4,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.persistence.Tuple;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import com.global.medical.entity.Clinic;
 import com.global.medical.entity.Doctor;
 import com.global.medical.entity.Reservation;
 import com.global.medical.enums.Shift;
 
-@Repository
+
 public interface ReservationRepo extends JpaRepository<Reservation, Long>{
 
 //	@Query(value = "SELECT * FROM `reservations` WHERE reservation_date=:#{#reservation.getReservationDate()} "
@@ -48,6 +45,10 @@ public interface ReservationRepo extends JpaRepository<Reservation, Long>{
 	    List<LocalTime> findReservationTimeByClinicAndReservationDate(@Param("clinic") Clinic clinic, @Param("doctor") Doctor doctor,@Param("reservationDate") LocalDate reservationDate );
 
 	    Reservation findByDoctorIdAndReservationDateAndReservationTime(Long id, LocalDate reservationDate, LocalTime reservationTime);
+
+		Reservation findByPatientIdAndReservationDateAndReservationTime(Long id, LocalDate reservationDate,LocalTime reservationTime);
+
+		Reservation findByPatientIdAndReservationDateAndClinicId(Long patientId, LocalDate reservationDate,Long clinicId);
 	
 
 

@@ -2,6 +2,11 @@ package com.global.medical.error;
 
 public class FileStorageException extends Exception {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public FileStorageException() {
 		super();
 		// TODO Auto-generated constructor stub

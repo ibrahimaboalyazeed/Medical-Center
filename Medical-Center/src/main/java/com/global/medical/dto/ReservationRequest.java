@@ -1,20 +1,19 @@
 package com.global.medical.dto;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Map;
 
-import com.global.medical.entity.Clinic;
-import com.global.medical.entity.Doctor;
+import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+import lombok.Setter;
+@Setter
+@Getter
 public class ReservationRequest {
-	
-	private Map<Long, LocalTime> datesMap;
-	
-	private Map<Long, Long> doctorClinic;
-	
-	private LocalDate date;
-	
+	@NotNull(message = "report cant be null")
+	private ReservationReport report;
+	@NotNull(message = "Array of time cant be null")
+    private LocalTime[] timeArray;
+	@NotNull(message = "Patient Id cant be null")
 	private Long patientId;
 	
 	  

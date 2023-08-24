@@ -1,12 +1,8 @@
 package com.global.medical.error;
 
-import java.nio.file.AccessDeniedException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.aspectj.weaver.NewConstructorTypeMunger;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -15,15 +11,12 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
-
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 @ControllerAdvice
 public class GlobalExceptionHandling {
@@ -50,10 +43,10 @@ public class GlobalExceptionHandling {
 	
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ErrorResponse> handleAllExceptions(Exception ex, WebRequest request) {
-		List<String> details = new ArrayList();
+		List<String> details = new ArrayList<String>();
 		details.add(ex.getLocalizedMessage());
 		ErrorResponse error = new ErrorResponse("Server Error", HttpStatus.NOT_FOUND.value(), details);
-		return new ResponseEntity(error, HttpStatus.OK);
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.OK);
 	}
 
 	@ExceptionHandler(CustomException.class)
@@ -61,7 +54,7 @@ public class GlobalExceptionHandling {
 		List<String> details = new ArrayList<>();
 		details.add(ex.getLocalizedMessage());
 		ErrorResponse error = new ErrorResponse("Server Exception", HttpStatus.NOT_FOUND.value(), details);
-		return new ResponseEntity(error, HttpStatus.OK);
+		return new ResponseEntity<Object>(error, HttpStatus.OK);
 	}
 
 //    @ExceptionHandler(MethodArgumentNotValidException.class)

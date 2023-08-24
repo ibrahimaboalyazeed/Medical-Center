@@ -22,7 +22,7 @@ public class PatientService {
 	
 	public Patient findById(long id) {
 		
-		Patient patient = patientRepo.findById(id).orElseThrow(() -> new CustomException("This Patient is not found"));
+		Patient patient = patientRepo.findById(id).orElseThrow(() -> new CustomException("Patient of Id " + id + " is not found"));
 		
 		return patient;
 	}
@@ -44,13 +44,26 @@ public class PatientService {
 		
 		patientToInsert.setAppUser(appUser);
 		
-	    Patient patientNew = patientRepo.save(patient);
+		serchPatient(patientToInsert);
+	
+		
+	    Patient patientNew = patientRepo.save(patientToInsert);
 		
 		return patientNew;
 	}
+	public boolean serchPatient(Patient patientToInsert) {
+	
+		if(patientRepo.findByFullNameAndPhoneNumberAndAge(patientToInsert.getFullName(),patientToInsert.getPhoneNumber(),patientToInsert.getAge()) != null )
+		{
+			throw new CustomException("this Patient is already exists");
+		}
+		else {
+			return true;
+		}
+	}
 	public Patient updateFullName(long id, String fullName) {
 		
-		Patient patient = patientRepo.findById(id).orElseThrow(() -> new CustomException("This Patient is not found"));
+		Patient patient = findById(id);
 		
 		patient.setFullName(fullName);
 		
@@ -60,7 +73,7 @@ public class PatientService {
 	}
 
 	public Patient updatePhoneNumber(long id, String phoneNumber) {
-		Patient patient = patientRepo.findById(id).orElseThrow(() -> new CustomException("This Patient is not found"));
+		Patient patient = findById(id);
 
 		patient.setPhoneNumber(phoneNumber);
 
@@ -68,7 +81,7 @@ public class PatientService {
 	}
 	public int deleteById(long id) {
 		
-		Patient patient = patientRepo.findById(id).orElseThrow(() -> new CustomException("This Patient is not found"));
+		Patient patient =findById(id);
 
         patientRepo.deleteById(id);
         

@@ -20,7 +20,6 @@ import com.global.medical.service.DoctorService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @RestController
 @RequestMapping("/doctors")

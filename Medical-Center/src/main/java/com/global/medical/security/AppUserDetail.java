@@ -17,7 +17,12 @@ import lombok.Setter;
 @Getter
 public class AppUserDetail implements UserDetails {
 	
-    private Long id ;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id ;
 	
 	private String fullName;
 	

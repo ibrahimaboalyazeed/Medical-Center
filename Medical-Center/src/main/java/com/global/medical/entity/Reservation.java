@@ -3,9 +3,8 @@ package com.global.medical.entity;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.TextStyle;
-import java.util.Locale;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,11 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostLoad;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 
 import com.global.medical.enums.Shift;
@@ -45,7 +43,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
@@ -107,29 +106,13 @@ public class Reservation {
         }
         return false;
     }
-//    public void setShift(Shift shift) {
-//        // Custom validation for shift
-//        if (shift == null) {
-//            throw new IllegalArgumentException("Shift cannot be null");
-//        }
-//
-//        LocalTime currentTime = LocalTime.now();
-//        LocalTime shiftStartTime = LocalTime.parse(shift.getStartTime());
-//        LocalTime shiftEndTime = LocalTime.parse(shift.getEndTime());
-//
-//        if (reservationTime.isBefore(shiftStartTime) || reservationTime.isAfter(shiftEndTime)) {
-//   
-//            throw new CustomException("Cannot set reservation for this shift at the current time.");
-//        }
-//
-//        this.shift = shift;
-//    }
+
     public void setShift() {
         if (reservationTime != null) {
-            LocalTime morningStartTime = LocalTime.parse("09:00:00");
-            LocalTime morningEndTime = LocalTime.parse("15:00:00");
-            LocalTime eveningStartTime = LocalTime.parse("15:00:00");
-            LocalTime eveningEndTime = LocalTime.parse("21:00:00");
+            LocalTime morningStartTime = LocalTime.parse("08:59:00");
+            LocalTime morningEndTime = LocalTime.parse("14:59:00");
+            LocalTime eveningStartTime = LocalTime.parse("14:59:00");
+            LocalTime eveningEndTime = LocalTime.parse("20:59:00");
 
             if (reservationTime.isAfter(morningStartTime) && reservationTime.isBefore(morningEndTime)) {
                 this.shift = Shift.MORNING;

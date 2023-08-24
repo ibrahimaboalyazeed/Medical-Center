@@ -1,7 +1,12 @@
 package com.global.medical.error;
 
 public class InvalidStatusInputException extends RuntimeException {
-    public InvalidStatusInputException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public InvalidStatusInputException(String message) {
         super(message);
     }
 }
