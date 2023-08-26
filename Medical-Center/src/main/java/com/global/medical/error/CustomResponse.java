@@ -1,4 +1,4 @@
-package com.global.medical.error;
+ package com.global.medical.error;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

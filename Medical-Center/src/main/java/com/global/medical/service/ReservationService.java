@@ -245,4 +245,19 @@ public class ReservationService {
 		return reservationRepo.findById(id).orElseThrow(() -> new CustomException("Reservation With Id " +id+" is not found."));
 	}
 
+	public List<Reservation> findAll() {
+		
+		return reservationRepo.findAll();
+	}
+
+	public List<Reservation> findDoctorReservations(Long id) {
+		doctorService.findById(id);
+		return reservationRepo.findByDoctorId(id);
+	}
+
+	public  List<Reservation> findPatientReservations(Long id) {
+		patientService.findById(id);
+		return  reservationRepo.findByPatientId(id);
+	}
+
 }

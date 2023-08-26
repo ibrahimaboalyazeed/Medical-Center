@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,31 +28,31 @@ public class ClinicService {
 	@Autowired
 	private UserService userService;
 
-
+	//@Cacheable(value = "clinic", key = "#id")
 	public Clinic findById(long id) {
 
 		Clinic clinic = clinicRepo.findById(id).orElseThrow(() -> new CustomException("Clinic with ID " + id + " not found."));
 
 		return clinic;
 	}
-
+	//@Cacheable(value = "clinic", key = "#root.methodName")
 	public List<Clinic> findAll() {
 
 		return clinicRepo.findAll();
 	}
-	
+	@Cacheable(value = "clinic", key = "#root.methodName")
 	    public Page<Clinic> findAll(int pageNo, int pageSize, String sortCol, Boolean isAsc) {
 	        Sort sort = Sort.by(isAsc ? Sort.Direction.ASC : Sort.Direction.DESC, sortCol);
 	        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 	        return clinicRepo.findAll(pageable);
 	    }
-
+	//@CacheEvict(value = {"clinic"} , key ="#root.methodName", allEntries = true)
 	public List<Clinic> insertAll(List<Clinic> clinics) {
 
 		return clinicRepo.saveAll(clinics);
 	}
 
-
+	//@CacheEvict(value = {"clinic"} , key ="#root.methodName", allEntries = true)
 	public Clinic updateClinic(Clinic clinic) {
 
 		Clinic clinicToUpdate = clinicRepo.findById(clinic.getId())
@@ -63,7 +65,7 @@ public class ClinicService {
 		return clinicRepo.save(clinicToUpdate);
 	}
 
-	
+	//@CacheEvict(value = {"clinic"} , key ="#root.methodName", allEntries = true)
 	public Clinic createClinic(Clinic clinic) {
 
 		Optional<Clinic> clinicToInsert = clinicRepo.findByName(clinic.getName());

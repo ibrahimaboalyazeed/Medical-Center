@@ -31,6 +31,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,6 +57,7 @@ public class AppUser {
 	@Column(unique = true)
 	private String email;
 	
+	@JsonProperty( value = "password", access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull(message ="password must not be null")
 	private String password ;
 	

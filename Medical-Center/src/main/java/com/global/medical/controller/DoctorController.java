@@ -29,12 +29,12 @@ public class DoctorController {
 
     private final DoctorService doctorService;
 
-
+    @Operation(summary = "Get a doctor by his Id")
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable long id) {
         return ResponseEntity.ok(new CustomResponse(doctorService.findById(id)));
     }
-
+    @Operation(summary = "Get all doctors")
     @GetMapping("/all")
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(new CustomResponse(doctorService.findAll()));
@@ -59,7 +59,7 @@ public class DoctorController {
 	}
 
 
-    @Operation(summary = "Delete a doctor by their id")
+    @Operation(summary = "Delete a doctor by his id")
     @DeleteMapping("/{id}")
     public ResponseEntity<CustomResponse> deleteById(@PathVariable long id) {
         return ResponseEntity.ok(new CustomResponse(doctorService.deleteById(id)));

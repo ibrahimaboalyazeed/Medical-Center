@@ -29,12 +29,13 @@ public class PatientController {
 	
 	private final PatientService patientService;
 	
-	
+	 @Operation(summary = "Get a patient by his Id")
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findById (@PathVariable long id){
 		
 		return ResponseEntity.ok(new CustomResponse(patientService.findById(id)));
 	}
+	 @Operation(summary = "Get all patients")
 	@GetMapping("/all")
 	public ResponseEntity<?> findAll (){
 

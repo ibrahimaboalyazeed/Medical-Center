@@ -49,6 +49,10 @@ public interface ReservationRepo extends JpaRepository<Reservation, Long>{
 		Reservation findByPatientIdAndReservationDateAndReservationTime(Long id, LocalDate reservationDate,LocalTime reservationTime);
 
 		Reservation findByPatientIdAndReservationDateAndClinicId(Long patientId, LocalDate reservationDate,Long clinicId);
+
+		List<Reservation> findByDoctorId(Long id);
+
+		List<Reservation> findByPatientId(Long id);
 	
 
 
