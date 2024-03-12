@@ -21,11 +21,9 @@ This project showcases the development of a backend system using Spring Boot for
    cd Medical-Center-
 
 2. Set Up the Database:
-
- - Install MySQL if not already installed.
- - Create a new database named medical_center.
- - Update the application.properties file with your database credentials.
- - 
+  - Install MySQL if not already installed.
+  - Create a new database named medical_center.
+  - Update the application.properties file with your database credentials.
 3. Build and Run the Application:
 
 Open the project in your preferred Java IDE (e.g., IntelliJ IDEA, Eclipse).
