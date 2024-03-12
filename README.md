@@ -38,10 +38,10 @@ This project showcases the development of a backend system using Spring Boot for
 Postman Collection => <https://documenter.getpostman.com/view/28314600/2sA2xjyWah>
 
 Swagger => <http://localhost:8080/swagger-ui.html>
-![The San Juan Mountains are beautiful!](https://github.com/ibrahimaboalyazeed/Medical-Center/blob/master/screenshots/Swagger-UI.PNG)
+![Swagger-UI!](https://github.com/ibrahimaboalyazeed/Medical-Center/blob/master/screenshots/Swagger-UI.PNG)
 
 ## Database Schema
-
+![database-schema!](https://github.com/ibrahimaboalyazeed/Medical-Center/blob/master/screenshots/databse-schema.PNG)
 To be added.
 ## Details
 
