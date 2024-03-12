@@ -33,7 +33,7 @@ This project showcases the development of a backend system using Spring Boot for
        mvn spring-boot:run
 4. ### Test the Endpoints:
 
-Once the application is running, test the endpoints using tools like Postman or curl.
+     - Once the application is running, test the endpoints using tools like Postman or curl.
 ## API Documentation
 
 Swagger: http://localhost:8080/swagger-ui.html
