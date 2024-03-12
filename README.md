@@ -1,5 +1,5 @@
-Medical Center System Backend
-
+#Medical Center System Backend
+***
 Summary
 This project showcases the development of a backend system using Spring Boot for a medical center management application. Key features include user authentication, appointment scheduling, patient and doctor management, and secure storage of medical records. The application ensures efficient handling of medical center operations while maintaining robust security measures through JWT-based authentication.
 
