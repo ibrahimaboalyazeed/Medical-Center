@@ -14,18 +14,17 @@ This project showcases the development of a backend system using Spring Boot for
 - Swagger: UI for API documentation
 ## How to Run the Project
 
-Clone the Repository:
+1. Clone the Repository:
 
-bash
-Copy code
+```bash
 git clone https://github.com/your-username/medical-center-system.git
 cd medical-center-system
-Set Up the Database:
+2. Set Up the Database:
 
 Install MySQL if not already installed.
 Create a new database named medical_center.
 Update the application.properties file with your database credentials.
-Build and Run the Application:
+3. Build and Run the Application:
 
 Open the project in your preferred Java IDE (e.g., IntelliJ IDEA, Eclipse).
 Build and run the application.
@@ -34,7 +33,7 @@ Alternatively, you can use Maven to build and run the application:
 arduino
 Copy code
 mvn spring-boot:run
-Test the Endpoints:
+4. Test the Endpoints:
 
 Once the application is running, test the endpoints using tools like Postman or curl.
 ## API Documentation
