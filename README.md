@@ -1,9 +1,9 @@
 # Medical Center System Backend
 
-Summary
+## Summary
 This project showcases the development of a backend system using Spring Boot for a medical center management application. Key features include user authentication, appointment scheduling, patient and doctor management, and secure storage of medical records. The application ensures efficient handling of medical center operations while maintaining robust security measures through JWT-based authentication.
 
-Tech Stack
+## Tech Stack
 
 Framework: Spring Boot 2.4
 Authentication: JWT-based authentication & stateless session
@@ -12,7 +12,7 @@ Languages: Java 11
 Build Tool: Maven
 Tomcat Server
 Swagger: UI for API documentation
-How to Run the Project
+## How to Run the Project
 
 Clone the Repository:
 
@@ -37,13 +37,13 @@ mvn spring-boot:run
 Test the Endpoints:
 
 Once the application is running, test the endpoints using tools like Postman or curl.
-API Documentation
+## API Documentation
 
 Swagger: http://localhost:8080/swagger-ui.html
-Database Schema
+## Database Schema
 
 To be added.
-Details
+## Details
 
 User Authentication:
 
@@ -58,10 +58,10 @@ Implement features for administrators to manage patient and doctor records effic
 Medical Records Management:
 
 Ensure secure storage and management of medical records for patients.
-Controllers and Endpoints
+## Controllers and Endpoints
 
 To be added.
-Entities
+## Entities
 
 To be added.
 Feel free to update this information with specific details and instructions tailored to your project's structure and requirements.
