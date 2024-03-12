@@ -42,7 +42,6 @@ Swagger => <http://localhost:8080/swagger-ui.html>
 
 ## Database Schema
 ![database-schema!](https://github.com/ibrahimaboalyazeed/Medical-Center/blob/master/screenshots/databse-schema.PNG)
-To be added.
 ## Details
 
 User Authentication:
