@@ -35,8 +35,8 @@ This project showcases the development of a backend system using Spring Boot for
 
      - Once the application is running, test the endpoints using tools like Postman or curl.
 ## API Documentation
-
-Swagger: http://localhost:8080/swagger-ui.html
+Postman Collection => <https://documenter.getpostman.com/view/28314600/2sA2xjyWah>
+Swagger => <http://localhost:8080/swagger-ui.html>
 ## Database Schema
 
 To be added.
