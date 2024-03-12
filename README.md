@@ -39,6 +39,7 @@ Postman Collection => <https://documenter.getpostman.com/view/28314600/2sA2xjyWa
 
 Swagger => <http://localhost:8080/swagger-ui.html>
 ![The San Juan Mountains are beautiful!](https://github.com/ibrahimaboalyazeed/Medical-Center/blob/master/screenshots/Swagger-UI.PNG)
+
 ## Database Schema
 
 To be added.
