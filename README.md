@@ -5,13 +5,13 @@ This project showcases the development of a backend system using Spring Boot for
 
 ## Tech Stack
 
-Framework: Spring Boot 2.4
-Authentication: JWT-based authentication & stateless session
-Database: MySQL
-Languages: Java 11
-Build Tool: Maven
-Tomcat Server
-Swagger: UI for API documentation
+- Framework: Spring Boot 2.4
+- Authentication: JWT-based authentication & stateless session
+- Database: MySQL
+- Languages: Java 11
+- Build Tool: Maven
+- Tomcat Server
+- Swagger: UI for API documentation
 ## How to Run the Project
 
 Clone the Repository:
