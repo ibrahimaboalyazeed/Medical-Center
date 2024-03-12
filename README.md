@@ -16,9 +16,9 @@ This project showcases the development of a backend system using Spring Boot for
 
 1. Clone the Repository:
 
-```bash
-git clone https://github.com/your-username/medical-center-system.git
-cd medical-center-system
+   ```bash
+   git clone https://github.com/your-username/medical-center-system.git
+   cd medical-center-system
 
 2. Set Up the Database:
 
