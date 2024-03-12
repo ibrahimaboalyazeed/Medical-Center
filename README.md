@@ -28,7 +28,7 @@ This project showcases the development of a backend system using Spring Boot for
     - Open the project in your preferred Java IDE (e.g., IntelliJ IDEA, Eclipse).
     - Build and run the application.
     - Alternatively, you can use Maven to build and run the application:
-    - 
+      
        ```bash
        mvn spring-boot:run
 4. ### Test the Endpoints:
