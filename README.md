@@ -44,19 +44,23 @@ Swagger => <http://localhost:8080/swagger-ui.html>
 ![database-schema!](https://github.com/ibrahimaboalyazeed/Medical-Center/blob/master/screenshots/databse-schema.PNG)
 ## Details
 
-User Authentication:
+### User Authentication:
 
-Implement robust user authentication allowing users to log in securely.
-Utilize JWT-based authentication for enhanced security.
-Appointment Scheduling:
+ - Implement robust user authentication allowing users to log in securely.
+ - Utilize JWT-based authentication for enhanced security.
+ - 
+### Appointment Scheduling:
 
 Develop functionalities for patients to schedule appointments with available doctors.
-Patient and Doctor Management:
+
+### Patient and Doctor Management:
 
 Implement features for administrators to manage patient and doctor records efficiently.
-Medical Records Management:
+
+### Medical Records Management:
 
 Ensure secure storage and management of medical records for patients.
+
 ## Controllers and Endpoints
 
 To be added.
