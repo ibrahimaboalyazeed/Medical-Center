@@ -268,3 +268,31 @@ Swagger => <http://localhost:8080/swagger-ui.html>
     - `id` (Long): ID of the patient.
   - Returns:
     - CustomResponse with the patient's reservations.
+
+### UserController
+
+- GET /api/v1/user
+  - Retrieve all users.
+  - Returns:
+    - Custom response containing all users.
+
+- GET /api/v1/user/{id}
+  - Retrieve a user by ID.
+  - Path Parameters:
+    - `id` (Long): ID of the user to be retrieved.
+  - Returns:
+    - Custom response containing the user details.
+### RoleController
+
+- GET /api/v1/role
+  - Retrieve all roles.
+  - Returns:
+    - Custom response containing all roles.
+
+- GET /api/v1/role/{id}
+  - Retrieve a role by ID.
+  - Path Parameters:
+    - `id` (Long): ID of the role to be retrieved.
+  - Returns:
+    - Custom response containing the role details.
+
