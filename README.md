@@ -176,4 +176,95 @@ Swagger => <http://localhost:8080/swagger-ui.html>
     - `id` (long): Doctor's id.
   - Returns:
     - Deletion status message.
+### PatientController
 
+- GET /patients/{id}
+  - Operation: Get a patient by his Id.
+  - Parameters:
+    - `id` (long): ID of the patient.
+  - Returns:
+    - ResponseEntity containing the patient details.
+
+- GET /patients/all
+  - Operation: Get all patients.
+  - Returns:
+    - ResponseEntity containing a list of all patients.
+
+- POST /patients/create
+  - Operation: Add new patient.
+  - Parameters:
+    - `Patient` object: Details of the patient to be created.
+  - Returns:
+    - ResponseEntity containing the newly created patient details.
+
+- PUT /patients/name/update
+  - Operation: Update the patient's name.
+  - Parameters:
+    - `id` (long): ID of the patient.
+    - `fullName` (String): Updated full name of the patient.
+  - Returns:
+    - ResponseEntity containing the updated patient details.
+
+- PUT /patients/phonenumber/update
+  - Operation: Update the patient's phone number.
+  - Parameters:
+    - `id` (long): ID of the patient.
+    - `phoneNumber` (String): Updated phone number of the patient.
+  - Returns:
+    - ResponseEntity containing the updated patient details.
+
+- DELETE /patients/{id}
+  - Operation: Delete a patient by its id.
+  - Parameters:
+    - `id` (long): ID of the patient to be deleted.
+  - Returns:
+    - ResponseEntity containing the result of the deletion operation.
+
+### ReservationController
+
+- POST /reservations/create
+  - Admin: Create a New Reservation
+  - Parameters:
+    - `Reservation` object: Details of the reservation to be created.
+  - Returns:
+    - CustomResponse with the created reservation.
+
+- POST /reservations/report
+  - Retrieve reservation report for a specific doctor in a specific date
+  - Parameters:
+    - `ReservationReport` object: Contains date and clinics map.
+  - Returns:
+    - CustomResponse with the generated reservation report.
+
+- POST /reservations
+  - Add a new reservation
+  - Parameters:
+    - `ReservationRequest` object: Contains report, patientId, and timeArray.
+  - Returns:
+    - CustomResponse with the added reservation.
+
+- DELETE /reservations/{id}
+  - Delete a reservation by its id
+  - Parameters:
+    - `id` (Long): ID of the reservation to be deleted.
+  - Returns:
+    - CustomResponse indicating the success of the deletion.
+
+- GET /reservations/all
+  - Retrieve all reservations
+  - Returns:
+    - CustomResponse with all reservations.
+
+- GET /reservations/doctor/{id}
+  - Retrieve a Doctor's reservations
+  - Parameters:
+    - `id` (Long): ID of the doctor.
+  - Returns:
+    - CustomResponse with the doctor's reservations.
+
+- GET /reservations/patient/{id}
+  - Retrieve a Patient's reservations
+  - Parameters:
+    - `id` (Long): ID of the patient.
+  - Returns:
+    - CustomResponse with the patient's reservations.
