@@ -133,4 +133,47 @@ Swagger => <http://localhost:8080/swagger-ui.html>
     - `id` (Long): Clinic's id.
   - Returns:
     - Response confirming the deletion of the clinic.
+### DoctorController
+
+- GET /doctors/{id}
+  - Summary: Get a doctor by his Id.
+  - Parameters:
+    - `id` (long): Doctor's id.
+  - Returns:
+    - Doctor details.
+
+- GET /doctors/all
+  - Summary: Get all doctors.
+  - Returns:
+    - List of all doctors.
+
+- POST /doctors/create
+  - Summary: Add new doctor.
+  - Parameters:
+    - `Doctor` object: Doctor details.
+  - Returns:
+    - Newly created doctor details.
+
+- PUT /doctors/name/update
+  - Summary: Update the doctor's name.
+  - Parameters:
+    - `id` (long): Doctor's id.
+    - `fullName` (String): Doctor's full name.
+  - Returns:
+    - Updated doctor details.
+
+- PUT /doctors/phonenumber/update
+  - Summary: Update the doctor's phone number.
+  - Parameters:
+    - `id` (long): Doctor's id.
+    - `phoneNumber` (String): Doctor's phone number.
+  - Returns:
+    - Updated doctor details.
+
+- DELETE /doctors/{id}
+  - Summary: Delete a doctor by his id.
+  - Parameters:
+    - `id` (long): Doctor's id.
+  - Returns:
+    - Deletion status message.
 
