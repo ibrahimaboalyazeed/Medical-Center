@@ -63,7 +63,6 @@ Swagger => <http://localhost:8080/swagger-ui.html>
 
 ## Controllers and Endpoints
   ### AuthController
-
     - POST /api/v1/auth/login
       - Endpoint for user login.
       -Parameters:
