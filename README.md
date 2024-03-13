@@ -80,6 +80,57 @@ Swagger => <http://localhost:8080/swagger-ui.html>
   - Returns:
     - Newly registered user details along with a JWT token for subsequent authentication.
 
+### ClinicController
 
-To be added.
-Feel free to update this information with specific details and instructions tailored to your project's structure and requirements.
+- **GET /clinics/{id}**
+  - Summary: Get a clinic by its id.
+  - Parameters:
+    - id (Long): Clinic's id.
+  - Returns:
+    - Response containing the clinic details.
+
+- **GET /clinics/name/{name}**
+  - Summary: Get a clinic by its name.
+  - Parameters:
+    - name (String): Clinic's name.
+  - Returns:
+    - Response containing the clinic details.
+
+- **GET /clinics/filter**
+  - Summary: Filter the clinics by name.
+  - Parameters:
+    - name (String, optional): Clinic's name for filtering.
+  - Returns:
+    - Response containing the filtered clinics or all clinics if no name is provided.
+
+- **GET /clinics/all**
+  - Summary: Get all clinics.
+  - Parameters:
+    - pageNo (int, default: 0): Page number.
+    - pageSize (int, default: 5): Number of items per page.
+    - sortcol (String, default: "id"): Column to sort by.
+    - isAsc (Boolean, default: true): Sort order (ascending or descending).
+  - Returns:
+    - Paginated response containing the list of clinics.
+
+- **POST /clinics/create**
+  - Summary: Add a new clinic.
+  - Parameters:
+    - Clinic object: Clinic details.
+  - Returns:
+    - Response containing the newly created clinic details.
+
+- **PUT /clinics/update**
+  - Summary: Update a clinic.
+  - Parameters:
+    - Clinic object: Clinic details to update.
+  - Returns:
+    - Response containing the updated clinic details.
+
+- **DELETE /clinics/{id}**
+  - Summary: Delete a clinic by its id.
+  - Parameters:
+    - id (Long): Clinic's id.
+  - Returns:
+    - Response confirming the deletion of the clinic.
+
