@@ -66,19 +66,19 @@ Swagger => <http://localhost:8080/swagger-ui.html>
   ### AuthController
   
     - POST /api/v1/auth/login
-         - Endpoint for user login.
-         -Parameters:
-            -email (String): User's email address.
-            -password (String): User's password.
-         -Returns:
-            -JWT token upon successful authentication along with user details.
+           - Endpoint for user login.
+           -Parameters:
+              -email (String): User's email address.
+              -password (String): User's password.
+           -Returns:
+              -JWT token upon successful authentication along with user details.
 
    - POST /api/v1/auth/signup
-         - Endpoint for user registration.
-         - Parameters:
-             - User object: User details including email, password, and other relevant information.
-         - Returns:
-             - Newly registered user details along with a JWT token for subsequent authentication.
+           - Endpoint for user registration.
+           - Parameters:
+               - User object: User details including email, password, and other relevant information.
+           - Returns:
+               - Newly registered user details along with a JWT token for subsequent authentication.
 ## Entities
 
 To be added.
