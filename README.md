@@ -48,18 +48,18 @@ Swagger => <http://localhost:8080/swagger-ui.html>
 
  - Implement robust user authentication allowing users to log in securely.
  - Utilize JWT-based authentication for enhanced security.
- - 
+   
 ### Appointment Scheduling:
 
-Develop functionalities for patients to schedule appointments with available doctors.
+ - Develop functionalities for patients to schedule appointments with available doctors.
 
 ### Patient and Doctor Management:
 
-Implement features for administrators to manage patient and doctor records efficiently.
+ - Implement features for administrators to manage patient and doctor records efficiently.
 
 ### Medical Records Management:
 
-Ensure secure storage and management of medical records for patients.
+ - Ensure secure storage and management of medical records for patients.
 
 ## Controllers and Endpoints
 
