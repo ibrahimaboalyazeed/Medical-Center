@@ -303,4 +303,54 @@ Swagger => <http://localhost:8080/swagger-ui.html>
        - `email` (String): User's email
        - `password` (String): User's password
        - `created_at` (Date): Date and time when the user was created
-    
+ ### Role
+
+- Represents a role in the system
+- Fields:
+  - `id` (Long): Role ID
+  - `name` (String): Name of the role
+### Patient
+
+- Represents a patient in the system
+- Fields:
+  - `id` (Long): Patient ID
+  - `fullName` (String): Full name of the patient (mandatory)
+  - `phoneNumber` (String): Phone number of the patient
+  - `age` (int): Age of the patient
+  - `appUser` (AppUser): Reference to the associated user entity
+### Doctor
+
+- Represents a doctor in the system
+- Fields:
+  - `id` (Long): Doctor ID
+  - `fullName` (String): Full name of the doctor
+  - `phoneNumber` (String): Phone number of the doctor
+  - `shift` (Shift): Shift of the doctor (enumerated type)
+  - `clinic` (Clinic): Clinic where the doctor works (many-to-one relationship)
+  - `appUser` (AppUser): Associated application user (one-to-one relationship)
+### Clinic
+
+- Represents a clinic in the system
+- Fields:
+  - `id` (Long): Clinic ID
+  - `name` (String): Name of the clinic
+  - `description` (String): Description of the clinic
+  - `examinationPeriod` (String): Examination period of the clinic
+  - `examinationPrice` (Integer): Examination price of the clinic
+  - `appUser` (AppUser): User associated with the clinic
+### Reservation
+
+- Represents a reservation in the system
+- Fields:
+  - `id` (Long): Reservation ID
+  - `patient` (Patient): Patient associated with the reservation
+  - `doctor` (Doctor): Doctor associated with the reservation
+  - `clinic` (Clinic): Clinic associated with the reservation
+  - `reservationDate` (LocalDate): Date of the reservation
+  - `reservationTime` (LocalTime): Time of the reservation
+  - `reservationDay` (DayOfWeek): Day of the reservation
+  - `status` (Status): Status of the reservation
+  - `shift` (Shift): Shift of the reservation (morning or evening)
+
+
+
