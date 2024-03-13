@@ -295,4 +295,12 @@ Swagger => <http://localhost:8080/swagger-ui.html>
     - `id` (Long): ID of the role to be retrieved.
   - Returns:
     - Custom response containing the role details.
-
+## Entities:
+ ### User 
+  - Represents a user in the system
+  - Fields:
+       - `id` (Long): User ID
+       - `email` (String): User's email
+       - `password` (String): User's password
+       - `created_at` (Date): Date and time when the user was created
+    
