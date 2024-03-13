@@ -62,6 +62,7 @@ Swagger => <http://localhost:8080/swagger-ui.html>
  - Ensure secure storage and management of medical records for patients.
 
 ## Controllers and Endpoints
+
   ### AuthController
     - POST /api/v1/auth/login
       - Endpoint for user login.
